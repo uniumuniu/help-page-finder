@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Help Page Finder</string>
+    <string name="search_placeholder">Opisz problem</string>
 </resources>

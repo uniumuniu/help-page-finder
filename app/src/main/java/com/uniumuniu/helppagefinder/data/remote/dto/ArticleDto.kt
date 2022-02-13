@@ -15,10 +15,10 @@ data class ArticleDto(
     val title: String,
 )
 
-fun ArticleDto.toHelpArticle(): HelpArticle {
+fun ArticleDto.toHelpArticle(gson: Gson): HelpArticle {
     return HelpArticle(
         title = title.trim(),
-        intro = Gson().fromJson(preview, PreviewDto::class.java).text.trim(),
+        intro = gson.fromJson(preview, PreviewDto::class.java).text.trim(),
         link = Constants.BASE_URL + link
     )
 }

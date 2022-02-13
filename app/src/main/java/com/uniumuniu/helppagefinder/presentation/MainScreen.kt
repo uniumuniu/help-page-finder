@@ -9,9 +9,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.uniumuniu.helppagefinder.R
 import com.uniumuniu.helppagefinder.core.Constants
 import com.uniumuniu.helppagefinder.domain.model.HelpArticle
 import com.uniumuniu.helppagefinder.presentation.component.Articles
@@ -50,12 +51,12 @@ fun MainScreenStateless(articles: List<HelpArticle>, query: String, onSearch: (S
     Surface(
         modifier = Modifier
             .fillMaxSize()
-            .padding(8.dp),
+            .padding(dimensionResource(id = R.dimen.standard)),
         color = MaterialTheme.colors.background
     ) {
         Column {
             Search(query = query, onSearch = onSearch)
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.standard)))
             Articles(articles = articles)
         }
     }
@@ -78,6 +79,6 @@ fun MainScreenPreview() {
                 link = Constants.BASE_URL
             )
         ),
-        "Search",
+        "Faktury",
         onSearch = {})
 }

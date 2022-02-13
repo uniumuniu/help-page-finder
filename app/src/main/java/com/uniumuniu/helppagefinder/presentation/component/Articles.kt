@@ -6,8 +6,9 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import com.uniumuniu.helppagefinder.R
 import com.uniumuniu.helppagefinder.core.Constants
 import com.uniumuniu.helppagefinder.domain.model.HelpArticle
 
@@ -16,7 +17,7 @@ fun Articles(articles: List<HelpArticle>) {
     LazyColumn {
         items(articles) { article ->
             ArticleItem(article = article)
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.standard)))
         }
     }
 }

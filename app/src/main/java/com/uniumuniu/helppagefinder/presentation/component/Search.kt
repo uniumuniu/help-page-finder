@@ -13,7 +13,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
+import com.uniumuniu.helppagefinder.*
 
 @ExperimentalComposeUiApi
 @Composable
@@ -27,9 +29,9 @@ fun Search(query: String, onSearch: (String) -> Unit) {
             .fillMaxWidth()
             .focusRequester(focusRequester),
         placeholder = {
-            Text(text = "Search")
+            Text(text = stringResource(id = R.string.search_placeholder))
         },
-        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
+        keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done),
         keyboardActions = KeyboardActions(
             onDone = { keyboardController?.hide() }
         ),

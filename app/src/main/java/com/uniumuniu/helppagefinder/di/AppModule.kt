@@ -1,5 +1,7 @@
 package com.uniumuniu.helppagefinder.di
 
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import com.uniumuniu.helppagefinder.core.Constants
 import com.uniumuniu.helppagefinder.data.remote.IHelpPageApi
 import com.uniumuniu.helppagefinder.data.repository.HelpArticleRepository
@@ -18,17 +20,23 @@ import javax.inject.Singleton
 object AppModule {
     @Provides
     @Singleton
-    fun provideHelpPageApi(): IHelpPageApi {
+    fun provideGson(): Gson {
+        return GsonBuilder().create()
+    }
+
+    @Provides
+    @Singleton
+    fun provideHelpPageApi(gson: Gson): IHelpPageApi {
         return Retrofit.Builder()
             .baseUrl(Constants.BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(IHelpPageApi::class.java)
     }
 
     @Provides
     @Singleton
-    fun provideHelpArticleRepository(api: IHelpPageApi): IHelpArticleRepository {
-        return HelpArticleRepository(api = api)
+    fun provideHelpArticleRepository(api: IHelpPageApi, gson: Gson): IHelpArticleRepository {
+        return HelpArticleRepository(api = api, gson = gson)
     }
 }
