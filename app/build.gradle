@@ -97,13 +97,4 @@ dependencies {
 
     // Jsoup
     implementation 'org.jsoup:jsoup:1.14.3'
-
-    // Skrape.it
-    implementation("it.skrape:skrapeit:1.2.0")
-
-    // Ktor
-    implementation "io.ktor:ktor-client-apache:1.6.7"
-
-    // HtmlUnit
-//    implementation 'xyz.nulldev.huandroid:huandroid:2.30.01'
 }

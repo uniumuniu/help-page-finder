@@ -2,7 +2,6 @@ package com.uniumuniu.helppagefinder.di
 
 import com.uniumuniu.helppagefinder.core.Constants
 import com.uniumuniu.helppagefinder.data.remote.IHelpPageApi
-import com.uniumuniu.helppagefinder.data.remote.Scraper
 import com.uniumuniu.helppagefinder.data.repository.HelpArticleRepository
 import com.uniumuniu.helppagefinder.domain.repository.IHelpArticleRepository
 import dagger.Module
@@ -29,7 +28,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideHelpArticleRepository(scraper: Scraper, api: IHelpPageApi): IHelpArticleRepository {
-        return HelpArticleRepository(api = api, scraper = scraper)
+    fun provideHelpArticleRepository(api: IHelpPageApi): IHelpArticleRepository {
+        return HelpArticleRepository(api = api)
     }
 }

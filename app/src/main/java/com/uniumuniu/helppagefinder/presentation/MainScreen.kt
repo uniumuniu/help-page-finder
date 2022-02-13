@@ -7,6 +7,7 @@ import androidx.compose.material.Surface
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -17,11 +18,12 @@ import com.uniumuniu.helppagefinder.presentation.component.Articles
 import com.uniumuniu.helppagefinder.presentation.component.Search
 import kotlinx.coroutines.flow.collectLatest
 
+@ExperimentalComposeUiApi
 @Composable
 fun MainScreen(viewModel: MainViewModel = hiltViewModel()) {
     val scaffoldState = rememberScaffoldState()
 
-    LaunchedEffect(key1 = true) {
+    LaunchedEffect(key1 = Unit) {
         viewModel.eventFlow.collectLatest { event ->
             when (event) {
                 is MainViewModel.UIEvent.ShowSnackbar -> {
@@ -32,7 +34,6 @@ fun MainScreen(viewModel: MainViewModel = hiltViewModel()) {
             }
         }
     }
-    // A surface container using the 'background' color from the theme
 
     val state = viewModel.state
     Scaffold(scaffoldState = scaffoldState) {
@@ -43,6 +44,7 @@ fun MainScreen(viewModel: MainViewModel = hiltViewModel()) {
     }
 }
 
+@ExperimentalComposeUiApi
 @Composable
 fun MainScreenStateless(articles: List<HelpArticle>, query: String, onSearch: (String) -> Unit) {
     Surface(
@@ -51,7 +53,7 @@ fun MainScreenStateless(articles: List<HelpArticle>, query: String, onSearch: (S
             .padding(8.dp),
         color = MaterialTheme.colors.background
     ) {
-        Column{
+        Column {
             Search(query = query, onSearch = onSearch)
             Spacer(modifier = Modifier.height(8.dp))
             Articles(articles = articles)
@@ -59,6 +61,7 @@ fun MainScreenStateless(articles: List<HelpArticle>, query: String, onSearch: (S
     }
 }
 
+@ExperimentalComposeUiApi
 @Composable
 @Preview(showSystemUi = true, showBackground = true)
 fun MainScreenPreview() {
